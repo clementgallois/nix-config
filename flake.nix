@@ -7,7 +7,7 @@
 
   outputs = { self, nixpkgs }: 
     let
-        system = "x86-64_linux";
+        system = "x86_64-linux";
 	pkgs = nixpkgs.legacyPackages.${system};
     in with pkgs; {
         packages.${system} = rec {
@@ -18,7 +18,7 @@
 	
 	nixosConfigurations = {
 	   "nixos" = nixpkgs.lib.nixosSystem {
-	       modules = [ ./configuration.nix ];
+	       modules = [ ./hosts/desktop ];
 	       specialArgs = { inherit pkgs; };
 	   };
 	};
