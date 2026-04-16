@@ -9,21 +9,11 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs: 
-    let
-        system = "x86_64-linux";
-	pkgs = nixpkgs.legacyPackages.${system};
-    in with pkgs; {
-        packages.${system} = rec {
-	    hello = pkgs.hello;
-
-            default = hello;
-        };
-	
+  outputs = { self, nixpkgs, ... } @ inputs: {
 	nixosConfigurations = {
 	   "desktop" = nixpkgs.lib.nixosSystem {
 	       modules = [ ./hosts/desktop ];
-	       specialArgs = { inherit inputs pkgs; outputs = self; };
+	       specialArgs = { inherit inputs; outputs = self; };
 	   };
 	};
     };
