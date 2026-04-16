@@ -3,9 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs }: 
+  outputs = { self, nixpkgs, ... } @ inputs: 
     let
         system = "x86_64-linux";
 	pkgs = nixpkgs.legacyPackages.${system};
@@ -17,9 +21,9 @@
         };
 	
 	nixosConfigurations = {
-	   "nixos" = nixpkgs.lib.nixosSystem {
+	   "desktop" = nixpkgs.lib.nixosSystem {
 	       modules = [ ./hosts/desktop ];
-	       specialArgs = { inherit pkgs; };
+	       specialArgs = { inherit inputs pkgs; outputs = self; };
 	   };
 	};
     };
