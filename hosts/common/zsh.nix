@@ -41,6 +41,9 @@
     alias = "f";
   };
 
+  # avoid prompt for configuration on first start
+  system.userActivationScripts.zshrc = "touch .zshrc";
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
