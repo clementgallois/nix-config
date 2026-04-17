@@ -10,6 +10,7 @@
       ./openssh.nix
       ./sops.nix
       ./zsh.nix
+      ./neovim.nix
     ];
     #++ (builtins.attrValues outputs.nixosModules);
 

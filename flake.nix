@@ -7,6 +7,10 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+        url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+      };
   };
 
   outputs = { self, nixpkgs, ... } @ inputs: {
