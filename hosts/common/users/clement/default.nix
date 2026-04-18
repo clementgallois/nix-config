@@ -29,6 +29,11 @@ in {
     neededForUsers = true;
   };
 
+  virtualisation.vmVariant = {
+    users.users.clement.hashedPasswordFile = lib.mkForce null;
+    users.users.clement.password = "nixos";
+    sops.secrets.clement_password.neededForUsers = lib.mkForce false;
+  };
   #home-manager.users.gabriel = import ../../../../home/gabriel/${config.networking.hostName}.nix;
 
   #security.pam.services = {

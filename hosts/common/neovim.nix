@@ -109,8 +109,8 @@ in
           { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
           
           -- Disable Mason as Nix handles binary dependencies natively
-          { "williamboman/mason-lspconfig.nvim", enabled = false },
-          { "williamboman/mason.nvim", enabled = false },
+          { "mason-org/mason-lspconfig.nvim", enabled = false },
+          { "mason-org/mason.nvim", enabled = false },
           
           -- Prevent treesitter from compiling grammars
           { 

@@ -7,6 +7,7 @@
   imports =
     [
       #inputs.home-manager.nixosModules.home-manager
+      ./vm_tweaks.nix
       ./openssh.nix
       ./sops.nix
       ./zsh.nix
