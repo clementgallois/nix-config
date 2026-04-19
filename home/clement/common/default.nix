@@ -6,9 +6,11 @@
   outputs,
   ...
 }: {
-  imports =
-    [
-    ];
+  imports = [
+    ./zsh.nix
+    ./nh.nix
+    ./neovim.nix
+  ];
 
   nix = {
     package = lib.mkDefault pkgs.nix;
@@ -28,15 +30,20 @@
     git.enable = true;
   };
 
+  # enable xdg directory handling (~/.config)
+  xdg.enable = true;
+
   home = {
     username = lib.mkDefault "clement";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "25.11";
     
     sessionPath = ["$HOME/.local/bin"];
-    sessionVariables = {
-      NH_FLAKE = "$HOME/NixConfig";
-    };
+
+    # defined in nh.nix
+    # sessionVariables = {
+    #   NH_FLAKE = "$HOME/NixConfig";
+    # };
 
     packages = with pkgs; [
       cowsay

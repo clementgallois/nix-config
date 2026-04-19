@@ -2,6 +2,7 @@
 {
   inputs,
   outputs,
+  pkgs,
   ...
 }: {
   imports =
@@ -11,7 +12,6 @@
       ./openssh.nix
       ./sops.nix
       ./zsh.nix
-      ./neovim.nix
     ];
     #++ (builtins.attrValues outputs.nixosModules);
 
@@ -19,6 +19,15 @@
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
+  };
+
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
+      nerd-fonts.fira-code
+      
+      noto-fonts-color-emoji
+    ];
   };
 
   nixpkgs = {
