@@ -6,7 +6,7 @@
 }: {
   imports =
     [
-      #inputs.home-manager.nixosModules.home-manager
+      inputs.home-manager.nixosModules.home-manager
       ./vm_tweaks.nix
       ./openssh.nix
       ./sops.nix
@@ -15,10 +15,11 @@
     ];
     #++ (builtins.attrValues outputs.nixosModules);
 
-  #home-manager.useGlobalPkgs = true;
-  #home-manager.extraSpecialArgs = {
-    #inherit inputs outputs;
-  #};
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = {
+    inherit inputs outputs;
+  };
 
   nixpkgs = {
     #overlays = builtins.attrValues outputs.overlays;
