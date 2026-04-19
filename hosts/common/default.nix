@@ -12,6 +12,10 @@
       ./openssh.nix
       ./sops.nix
       ./zsh.nix
+      ./locale.nix
+      ./audio-pipewire.nix
+      ./gnome.nix
+      ./keymap.nix
     ];
     #++ (builtins.attrValues outputs.nixosModules);
 
