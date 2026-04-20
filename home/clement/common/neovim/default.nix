@@ -194,7 +194,7 @@
   # you to edit your Lua config and see changes immediately without rebuilding.
   # TODO: adjust your source directory accordingly
   xdg.configFile."nvim/lua" = {
-    source = config.lib.file.mkOutOfStoreSymlink "./lua";
+    source = config.lib.file.mkOutOfStoreSymlink (builtins.toString ./lua);
     recursive = true;
   };
 }
