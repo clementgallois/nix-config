@@ -17,7 +17,13 @@
       "fr_FR.UTF-8/UTF-8"
     ];
   };
-  location.provider = "geoclue2";
-  services.automatic-timezoned.enable = true;
-  systemd.services.automatic-timezoned.serviceConfig.Restart = "always";
+
+  time.timeZone = "Europe/Luxembourg";
+
+  # Need to apparently
+  # services.geoclue2.geoProviderUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_KEY"
+  # 
+  # location.provider = "geoclue2";
+  # services.automatic-timezoned.enable = true;
+  # systemd.services.automatic-timezoned.serviceConfig.Restart = "always";
 }
