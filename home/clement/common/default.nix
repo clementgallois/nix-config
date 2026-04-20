@@ -9,7 +9,7 @@
   imports = [
     ./zsh.nix
     ./nh.nix
-    ./neovim.nix
+    ./neovim
   ];
 
   nix = {
