@@ -1,6 +1,7 @@
 {lib, ...}: {
   i18n = {
     defaultLocale = lib.mkDefault "en_US.UTF-8";
+    extraLocales = lib.mkDefault [ "fr_FR.UTF-8/UTF-8" ];
     extraLocaleSettings = {
       LC_TIME = lib.mkDefault "fr_FR.UTF-8";
       LC_ADDRESS = lib.mkDefault "fr_FR.UTF-8";
@@ -12,18 +13,21 @@
       LC_PAPER = lib.mkDefault "fr_FR.UTF-8";
       LC_TELEPHONE = lib.mkDefault "fr_FR.UTF-8";
     };
-    supportedLocales = lib.mkDefault [
-      "en_US.UTF-8/UTF-8"
-      "fr_FR.UTF-8/UTF-8"
-    ];
   };
 
-  time.timeZone = "Europe/Luxembourg";
+  # time.timeZone = "Europe/Luxembourg";
+  location = {
+    provider = "geoclue2";
+  };
+  services.geoclue2 = {
+    enableStatic = lib.mkDefault true;
+    # Paris but it's cool numbers
+    staticLatitude = 48.88888;
+    staticLongitude = 2.22222;
+    staticAltitude = 69;
+    staticAccuracy = 1;
+  };
 
-  # Need to apparently
-  # services.geoclue2.geoProviderUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_KEY"
-  # 
-  # location.provider = "geoclue2";
-  # services.automatic-timezoned.enable = true;
-  # systemd.services.automatic-timezoned.serviceConfig.Restart = "always";
+  # automatic timezone based on ip
+  #services.tzupdate.enable = true;
 }
