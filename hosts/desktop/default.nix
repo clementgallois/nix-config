@@ -8,6 +8,7 @@
       ./hardware-configuration.nix
       ../common
       ../common/users/clement
+      ../common/optional/podman.nix
     ];
 
   # Enable flakes
