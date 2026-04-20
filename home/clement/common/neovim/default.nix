@@ -126,12 +126,6 @@
       in
       # lua
       ''
-        -- Custom mapping for moving easily windows
-        vim.keymap.set('n', '<C-h>', '<C-w>h')
-        vim.keymap.set('n', '<C-j>', '<C-w>j')
-        vim.keymap.set('n', '<C-k>', '<C-w>k')
-        vim.keymap.set('n', '<C-l>', '<C-w>l')
-
         require("lazy").setup({
           defaults = {
             lazy = true,
@@ -185,6 +179,7 @@
               -- },
             },
           },
+	  -- al
           -- see https://www.lazyvim.org/plugins/colorscheme on how to change/install colorschemes 
           install = { colorscheme = { "habamax", "catppuccin" } },
           checker = { enabled = false }, -- disable automatic update checking
@@ -192,18 +187,14 @@
       '';
   };
 
-  home.activation.cloneLazyVim = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if [ ! -d "${config.xdg.configHome}/LazyVim" ]; then
-      ${pkgs.git}/bin/git clone https://github.com/LazyVim/starter "${config.xdg.configHome}/LazyVim"
-    fi
-  '';
+  # maybe
   # Normal LazyVim config here, like this: https://github.com/LazyVim/starter/tree/main/lua
   # mkOutOfStoreSymlink is used instead of a regular source so the files
   # aren't copied into the Nix store. This keeps them writable, allowing
   # you to edit your Lua config and see changes immediately without rebuilding.
   # TODO: adjust your source directory accordingly
   xdg.configFile."nvim/lua" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/LazyVim/lua";
+    source = config.lib.file.mkOutOfStoreSymlink "./lua";
     recursive = true;
   };
 }

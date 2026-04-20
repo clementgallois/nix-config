@@ -38,7 +38,7 @@ in {
   # home-manager.users.clement = import "${inputs.self}/home/clement/${config.networking.hostName}.nix";
   home-manager.users.clement = import "${inputs.self}/home/clement/desktop.nix";
 
-  #security.pam.services = {
+#security.pam.services = {
     #swaylock = {};
     #hyprlock = {};
   #};
