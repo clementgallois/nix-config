@@ -8,7 +8,11 @@
       ./hardware-configuration.nix
       ../common
       ../common/users/clement
+
       ../common/optional/podman.nix
+
+      # wifi network conf
+      ../common/optional/network
     ];
 
   # Enable flakes

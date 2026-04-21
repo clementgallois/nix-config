@@ -2,7 +2,12 @@ keys:
   - &desktop age16g6rms7ctp9n564mf9a0skrt32rwarjmwgjn7r330csx2epmlqqqekjs6v
 # …more server keys go here…
 creation_rules:
-  - path_regex: hosts/common/user/clement/secrets.ya?ml$
+  - path_regex: hosts/common/user/clement/secrets\.ya?ml$
     key_groups:
     - age:
       - *desktop
+  - path_regex: hosts/common/optional/network/.*secrets\.ya?ml$
+    key_groups:
+    - age:
+      - *desktop
+

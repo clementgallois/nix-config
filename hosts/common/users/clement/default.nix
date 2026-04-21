@@ -15,7 +15,7 @@ in {
       "audio"
       "git"
       "libvirtd"
-      "wpa_supplicant"
+      "networkmanager"
       "podman"
       "wheel"
     ];

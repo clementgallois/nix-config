@@ -1,4 +1,5 @@
 # Enable Podman virtualization
+{
   virtualisation.podman = {
     enable = true;
 
@@ -14,3 +15,4 @@
   #   podman-compose
   #   podman-tui
   # ];
+}
