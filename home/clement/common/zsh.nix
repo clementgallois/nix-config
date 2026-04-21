@@ -13,7 +13,6 @@
       shellAliases = {
         ll = "ls -l";
         la = "ls -la";
-        # update = "nh os switch"; # C'est le moment de l'activer !
       };
 
       dotDir = "${config.xdg.configHome}/zsh";
@@ -26,11 +25,6 @@
         share = true; # default (share history between terminal windows)
         size = 100000; # default
         save = 100000; # default
-      };
-
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" ];
       };
     };
 
