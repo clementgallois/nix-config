@@ -99,11 +99,17 @@
           ts-comments-nvim
           which-key-nvim
 
+          # extras
+          mini-surround
           # When a plugin's name in nixpkgs doesn't match what Lazy expects,
           # you can manually specify the mapping like this:
+          # {
+          #   name = "catppuccin";
+          #   path = catppuccin-nvim;
+          # }
           {
-            name = "catppuccin";
-            path = catppuccin-nvim;
+            name = "dracula";
+            path = dracula-vim;
           }
         ];
 
@@ -127,61 +133,68 @@
       # lua
       ''
         require("lazy").setup({
-          defaults = {
-            lazy = true,
-          },
-          dev = {
-            -- reuse files from pkgs.vimPlugins.*
-            path = "${lazyPath}",
-            patterns = { "." },
-            -- if a plugin isn't found in the linkFarm,
-            -- Lazy will fall back to downloading it directly
-            fallback = true,
-          },
-          spec = {
-            { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+        	defaults = {
+        		lazy = true,
+        	},
+        	dev = {
+        		-- reuse files from pkgs.vimPlugins.*
+        		path = "${lazyPath}",
+        		patterns = { "." },
+        		-- if a plugin isn't found in the linkFarm,
+        		-- Lazy will fall back to downloading it directly
+        		fallback = true,
+        	},
+        	spec = {
+        		{ "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "tokyonight-night" } },
 
-            -- here you can enable extras like this:
-            -- { import = "lazyvim.plugins.extras.editor.aerial" }, -- sybmols
-
-            -- language specific config is often available via an extra
-            -- find available languages here: https://www.lazyvim.org/extras or via :LazyExtras
-            { import = "lazyvim.plugins.extras.lang.nix" }, -- configure lsp/formatters/treesitter etc. for nix
-
-            -- disable mason.nvim, use programs.neovim.extraPackages
-            { "mason-org/mason-lspconfig.nvim", enabled = false },
-            { "mason-org/mason.nvim", enabled = false },
-
-            -- import/override with your plugins
-            { import = "plugins" },
-
-            -- since mason is disabled, each server needs to be explicitly
-            -- configured here so nvim-lspconfig picks it up without mason
-            -- { "neovim/nvim-lspconfig", opts = { servers = lsp_servers }},
-
-            -- make sure nvim-treesitter is configured last,
-            -- if you dont want to install all grammars you might
-            -- need to use a function for ensure_installed to
-            -- clear it
+        		-- colorschemes
+            -- Not a fan of catppuccin so disable it
+            { "catppuccin/nvim", name = "catppuccin", enabled = false },
             {
-              "nvim-treesitter/nvim-treesitter",
-              -- dont run anything when installing/updating
-              build = "",
-              -- NOTE: when not all grammars are installed, make sure
-              -- to clear encure_installed by making opts a function:
-              opts = function(_, opts)
-                opts.ensure_installed = {}
-                opts.install_dir = "${treesitterGrammars}"
-                return opts
-              end,
-              -- opts = {
-              --   install_dir = "${treesitterGrammars}",
-              -- },
+        			"dracula/vim",
+        			name = "dracula",
             },
-          },
-          -- see https://www.lazyvim.org/plugins/colorscheme on how to change/install colorschemes 
-          install = { colorscheme = { "habamax", "catppuccin" } },
-          checker = { enabled = false }, -- disable automatic update checking
+        		-- here you can enable extras like this:
+        		{ import = "lazyvim.plugins.extras.coding.mini-surround" }, -- surround commands with gs
+
+        		-- language specific config is often available via an extra
+        		-- find available languages here: https://www.lazyvim.org/extras or via :LazyExtras
+        		{ import = "lazyvim.plugins.extras.lang.nix" }, -- configure lsp/formatters/treesitter etc. for nix
+
+        		-- disable mason.nvim, use programs.neovim.extraPackages
+        		{ "mason-org/mason-lspconfig.nvim", enabled = false },
+        		{ "mason-org/mason.nvim", enabled = false },
+
+        		-- import/override with your plugins
+        		{ import = "plugins" },
+
+        		-- since mason is disabled, each server needs to be explicitly
+        		-- configured here so nvim-lspconfig picks it up without mason
+        		-- { "neovim/nvim-lspconfig", opts = { servers = lsp_servers }},
+
+        		-- make sure nvim-treesitter is configured last,
+        		-- if you dont want to install all grammars you might
+        		-- need to use a function for ensure_installed to
+        		-- clear it
+        		{
+        			"nvim-treesitter/nvim-treesitter",
+        			-- dont run anything when installing/updating
+        			build = "",
+        			-- NOTE: when not all grammars are installed, make sure
+        			-- to clear encure_installed by making opts a function:
+        			opts = function(_, opts)
+        				opts.ensure_installed = {}
+        				opts.install_dir = "${treesitterGrammars}"
+        				return opts
+        			end,
+        			-- opts = {
+        			--   install_dir = "${treesitterGrammars}",
+        			-- },
+        		},
+        	},
+        	-- see https://www.lazyvim.org/plugins/colorscheme on how to change/install colorschemes
+        	install = { colorscheme = { "dracula", "habamax", } },
+        	checker = { enabled = false }, -- disable automatic update checking
         })
       '';
   };
