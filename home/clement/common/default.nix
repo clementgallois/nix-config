@@ -1,11 +1,10 @@
 {
-  inputs,
   lib,
   pkgs,
   config,
-  outputs,
   ...
-}: {
+}:
+{
   imports = [
     ./zsh.nix
     ./nh.nix
@@ -37,8 +36,8 @@
     username = lib.mkDefault "clement";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "25.11";
-    
-    sessionPath = ["$HOME/.local/bin"];
+
+    sessionPath = [ "$HOME/.local/bin" ];
 
     # defined in nh.nix
     # sessionVariables = {

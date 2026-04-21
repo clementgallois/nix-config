@@ -1,19 +1,22 @@
 { config, ... }:
 {
-  sops.secrets."wifi_home_main_ssid" = {
-    sopsFile = ./wifi_home_main_secrets.yaml;
-    key = "ssid";
+  sops = {
+    secrets."wifi_home_main_ssid" = {
+      sopsFile = ./wifi_home_main_secrets.yaml;
+      key = "ssid";
+    };
+
+    secrets."wifi_home_main_psk" = {
+      sopsFile = ./wifi_home_main_secrets.yaml;
+      key = "psk";
+    };
+
+    templates."wifi_home_main.env".content = ''
+      WIFI_HOME_MAIN_SSID=${config.sops.placeholder."wifi_home_main_ssid"}
+      WIFI_HOME_MAIN_PSK=${config.sops.placeholder."wifi_home_main_psk"}
+    '';
   };
 
-  sops.secrets."wifi_home_main_psk" = {
-    sopsFile = ./wifi_home_main_secrets.yaml;
-    key = "psk";
-  };
-
-  sops.templates."wifi_home_main.env".content = ''
-    WIFI_HOME_MAIN_SSID=${config.sops.placeholder."wifi_home_main_ssid"}
-    WIFI_HOME_MAIN_PSK=${config.sops.placeholder."wifi_home_main_psk"}
-  '';
   networking.networkmanager = {
 
     # generated in /run/NetworkManager/system-connections/

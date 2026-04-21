@@ -3,13 +3,15 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   hosts = lib.attrNames outputs.nixosConfigurations;
 
   # Sops needs acess to the keys before the persist dirs are even mounted; so
   # just persisting the keys won't work, we must point at /persist
   #hasOptinPersistence = config.environment.persistence ? "/persist";
-in {
+in
+{
   services.openssh = {
     enable = true;
     settings = {
@@ -39,8 +41,8 @@ in {
     # Each hosts public key
     knownHosts = lib.genAttrs hosts (hostname: {
       publicKeyFile = ../${hostname}/ssh_host_ed25519_key.pub;
-        # Alias for localhost if it's the same host
-      extraHostNames = (lib.optional (hostname == config.networking.hostName) "localhost");
+      # Alias for localhost if it's the same host
+      extraHostNames = lib.optional (hostname == config.networking.hostName) "localhost";
     });
   };
 

@@ -4,32 +4,33 @@
   outputs,
   pkgs,
   ...
-}: {
-  imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
-      ./vm_tweaks.nix
-      ./openssh.nix
-      ./sops.nix
-      ./zsh.nix
-      ./locale.nix
-      ./audio-pipewire.nix
-      ./gnome.nix
-      ./keymap.nix
-    ];
-    #++ (builtins.attrValues outputs.nixosModules);
+}:
+{
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    ./vm_tweaks.nix
+    ./openssh.nix
+    ./sops.nix
+    ./zsh.nix
+    ./locale.nix
+    ./audio-pipewire.nix
+    ./gnome.nix
+    ./keymap.nix
+  ];
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = {
-    inherit inputs outputs;
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
   };
 
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
       nerd-fonts.fira-code
-      
+
       noto-fonts-color-emoji
     ];
   };
@@ -46,18 +47,18 @@
 
   # Increase open file limit for sudoers
   #security.pam.loginLimits = [
-    #{
-      #domain = "@wheel";
-      #item = "nofile";
-      #type = "soft";
-      #value = "524288";
-    #}
-    #{
-      #domain = "@wheel";
-      #item = "nofile";
-      #type = "hard";
-      #value = "1048576";
-    #}
+  #{
+  #domain = "@wheel";
+  #item = "nofile";
+  #type = "soft";
+  #value = "524288";
+  #}
+  #{
+  #domain = "@wheel";
+  #item = "nofile";
+  #type = "hard";
+  #value = "1048576";
+  #}
   #];
 
   # Cleanup stuff included by default

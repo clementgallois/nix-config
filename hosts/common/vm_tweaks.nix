@@ -1,6 +1,5 @@
 # tweak for running vm using nix vms
 # eg: nix run .#nixosConfigurations.desktop.config.system.build.vm
-{ ... }:
 {
   virtualisation.vmVariant = {
     virtualisation.memorySize = 4096;

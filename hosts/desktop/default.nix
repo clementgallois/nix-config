@@ -1,34 +1,47 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../common
-      ../common/users/clement
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../common
+    ../common/users/clement
 
-      ../common/optional/podman.nix
+    ../common/optional/podman.nix
 
-      # wifi network conf
-      ../common/optional/network
-    ];
+    # wifi network conf
+    ../common/optional/network
+  ];
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
+  boot = {
+    loader = {
+      systemd-boot = {
 
-  boot.loader.systemd-boot.extraEntries = {
-    "nobara.conf" = ''
-      title Nobara
-      efi /EFI/fedora/shimx64.efi
-    '';
+        # Bootloader.
+        enable = true;
+
+        extraEntries = {
+          "nobara.conf" = ''
+            title Nobara
+            efi /EFI/fedora/shimx64.efi
+          '';
+        };
+      };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+    };
   };
+
   networking.hostName = "desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -38,7 +51,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable touchpad support 
+  # Enable touchpad support
   # in gnome.nix
   # services.xserver.libinput.enable = true;
 
