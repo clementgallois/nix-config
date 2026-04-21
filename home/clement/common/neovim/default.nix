@@ -146,7 +146,7 @@
 
             -- language specific config is often available via an extra
             -- find available languages here: https://www.lazyvim.org/extras or via :LazyExtras
-            -- { import = "lazyvim.plugins.extras.lang.nix" }, -- configure lsp/formatters/treesitter etc. for nix 
+            { import = "lazyvim.plugins.extras.lang.nix" }, -- configure lsp/formatters/treesitter etc. for nix
 
             -- disable mason.nvim, use programs.neovim.extraPackages
             { "mason-org/mason-lspconfig.nvim", enabled = false },
@@ -157,7 +157,7 @@
 
             -- since mason is disabled, each server needs to be explicitly
             -- configured here so nvim-lspconfig picks it up without mason
-            { "neovim/nvim-lspconfig", opts = { servers = lsp_servers }},
+            -- { "neovim/nvim-lspconfig", opts = { servers = lsp_servers }},
 
             -- make sure nvim-treesitter is configured last,
             -- if you dont want to install all grammars you might
@@ -179,7 +179,6 @@
               -- },
             },
           },
-	  -- al
           -- see https://www.lazyvim.org/plugins/colorscheme on how to change/install colorschemes 
           install = { colorscheme = { "habamax", "catppuccin" } },
           checker = { enabled = false }, -- disable automatic update checking
