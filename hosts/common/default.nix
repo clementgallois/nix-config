@@ -16,6 +16,7 @@
     ./audio-pipewire.nix
     ./gnome.nix
     ./keymap.nix
+    ./kdeconnect.nix
   ];
 
   home-manager = {

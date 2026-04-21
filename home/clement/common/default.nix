@@ -9,6 +9,7 @@
     ./zsh.nix
     ./nh.nix
     ./neovim
+    ./kdeconnect.nix
   ];
 
   nix = {
