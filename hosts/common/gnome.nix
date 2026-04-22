@@ -11,7 +11,7 @@
   };
 
   # remove stuff
-  services.gnome.gnome-initial-setup = false;
+  services.gnome.gnome-initial-setup.enable = false;
 
   # Fix broken stuff
   services.avahi.enable = false;
