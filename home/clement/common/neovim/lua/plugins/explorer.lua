@@ -25,6 +25,13 @@ return {
 							end, { all = open_recursive })
 						end,
 					},
+					-- open explorer if opening from project
+					projects = {
+						confirm = function(picker)
+							picker:action("load_session")
+							picker:action("picker_explorer")
+						end,
+					},
 				},
 			},
 			image = { enabled = true },
