@@ -46,11 +46,10 @@
   programs.seahorse.enable = true; # gui for keyrings ? idk
   services.gnome.sushi.enable = true; # file preview in nautilus
 
-  # gnome-software
-  services = {
-    flatpak.enable = true;
-    gnome.gnome-software.enable = true;
-  };
+  # gnome-software (if needed)
+  services.flatpak.enable = true;
+  services.gnome.gnome-software.enable = true;
+
   # Fix broken stuff
   services.avahi.enable = false;
   networking.networkmanager.enable = true;
