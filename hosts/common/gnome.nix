@@ -7,8 +7,12 @@
       enable = true;
     };
     # Enable touchpad/mouse support (enabled default in most desktopManager).
-    libinput.enable = true;
+    #libinput.enable = true;
   };
+
+  # remove stuff
+  services.gnome.gnome-initial-setup = false;
+
   # Fix broken stuff
   services.avahi.enable = false;
   networking.networkmanager.enable = true;
