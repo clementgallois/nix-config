@@ -10,6 +10,7 @@
     ./nh.nix
     ./neovim
     ./kdeconnect.nix
+    ./shell.nix
   ];
 
   nix = {
