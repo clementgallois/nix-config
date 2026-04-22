@@ -105,6 +105,7 @@
 
           # extras
           mini-surround
+          mini-misc # auto color term
           # When a plugin's name in nixpkgs doesn't match what Lazy expects,
           # you can manually specify the mapping like this:
           # {
