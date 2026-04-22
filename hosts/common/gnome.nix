@@ -18,6 +18,10 @@
   # https://github.com/NixOS/nixpkgs/blob/456e8a9468b9d46bd8c9524425026c00745bc4d2/nixos/modules/services/desktop-managers/gnome.nix#L539
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-tour
+    gnome-user-docs
+  ];
 
   # pick what i really want
   environment.systemPackages = with pkgs; [
@@ -27,12 +31,16 @@
     decibels # audio player
     showtime # video player
     simple-scan # scanner
+    baobab # view disk usage
     gnome-clocks
     gnome-calculator
     gnome-console
+    gnome-weather
+    gnome-calendar
     gnome-text-editor
     gnome-maps
     gnome-system-monitor
+    snapshot # preview webcam before meeting ?
   ];
   programs.gnome-disks.enable = true;
   programs.seahorse.enable = true; # gui for keyrings ? idk
@@ -41,7 +49,7 @@
   # gnome-software
   services = {
     flatpak.enable = true;
-    gnome-software.enable = true;
+    gnome.gnome-software.enable = true;
   };
   # Fix broken stuff
   services.avahi.enable = false;
