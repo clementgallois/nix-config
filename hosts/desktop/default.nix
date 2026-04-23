@@ -1,9 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
+    inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common
@@ -57,7 +60,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  hardware.enableRedistributableFirmware = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
