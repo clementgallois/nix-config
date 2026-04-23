@@ -20,7 +20,7 @@
           bing.metaData.hidden = true;
         };
       };
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
         ublock-origin
         proton-pass
         sponsorblock
