@@ -4,9 +4,11 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in {
+in
+{
   users.mutableUsers = false;
   users.users.clement = {
     isNormalUser = true;
@@ -35,11 +37,13 @@ in {
     users.users.clement.password = "nixos";
     sops.secrets.clement_password.neededForUsers = lib.mkForce false;
   };
+
+  home-manager.backupFileExtension = "backup";
   # home-manager.users.clement = import "${inputs.self}/home/clement/${config.networking.hostName}.nix";
   home-manager.users.clement = import "${inputs.self}/home/clement/desktop.nix";
 
-#security.pam.services = {
-    #swaylock = {};
-    #hyprlock = {};
+  #security.pam.services = {
+  #swaylock = {};
+  #hyprlock = {};
   #};
 }

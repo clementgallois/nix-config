@@ -11,6 +11,7 @@
     ./neovim
     ./kdeconnect.nix
     ./shell.nix
+    ./firefox.nix
   ];
 
   nix = {

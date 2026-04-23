@@ -13,26 +13,35 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    # not using this yet
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # Firefox Addons, packaged with nix
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: {
-    nixosConfigurations = {
-      "desktop" = nixpkgs.lib.nixosSystem {
-        modules = [./hosts/desktop];
-        specialArgs = {
-          inherit inputs;
-          outputs = self;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      #home-manager,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations = {
+        "desktop" = nixpkgs.lib.nixosSystem {
+          modules = [ ./hosts/desktop ];
+          specialArgs = {
+            inherit inputs;
+            outputs = self;
+          };
         };
       };
     };
-  };
 }
