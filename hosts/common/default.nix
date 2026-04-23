@@ -17,6 +17,7 @@
     ./gnome.nix
     ./keymap.nix
     ./kdeconnect.nix
+    ./steam.nix
   ];
 
   home-manager = {
