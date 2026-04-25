@@ -6,7 +6,7 @@
     config = {
       # https://github.com/GnomedDev/T2FanRD/blob/master/README.md#nixos-1
       # for speed value, rest is "will see" type of conf"
-      fan1 = {
+      Fan1 = {
         # min_speed = 1250;
         # max_speed = 6336;
 
@@ -16,7 +16,7 @@
         always_full_speed = false; # default
       };
 
-      fan2 = {
+      Fan2 = {
         # min_speed = 1350;
         # max_speed = 6864;
 
