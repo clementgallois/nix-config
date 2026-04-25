@@ -145,6 +145,7 @@
           Time = "24hr";
           Locale = "fr_FR";
           Action = "Time";
+          Stretch = 2;
         }
       ];
     };
