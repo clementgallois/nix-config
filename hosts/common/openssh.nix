@@ -39,11 +39,17 @@ in
 
   programs.ssh = {
     # Each hosts public key
-    knownHosts = lib.genAttrs hosts (hostname: {
-      publicKeyFile = ../${hostname}/ssh_host_ed25519_key.pub;
-      # Alias for localhost if it's the same host
-      extraHostNames = lib.optional (hostname == config.networking.hostName) "localhost";
-    });
+    knownHosts = lib.pipe hosts [
+      (lib.filter (hostname: builtins.pathExists ../${hostname}/ssh_host_ed25519_key.pub))
+      (
+        filteredHosts:
+        lib.genAttrs filteredHosts (hostname: {
+          publicKeyFile = ../${hostname}/ssh_host_ed25519_key.pub;
+          # Alias for localhost if it's the same host
+          extraHostNames = lib.optional (hostname == config.networking.hostName) "localhost";
+        })
+      )
+    ];
   };
 
   # Passwordless sudo when SSH'ing with keys
