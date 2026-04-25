@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "brcm-firmware": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777109885,
+        "narHash": "sha256-1h8o9f5ez0gouOY1A5VHOe9XkfGoJrN9761/m/EVXnk=",
+        "ref": "main",
+        "rev": "e9175f6b33f960d93d422eb55f82b484387eea79",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/clementgallois/brcm-firmware.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/clementgallois/brcm-firmware.git"
+      }
+    },
     "firefox-addons": {
       "inputs": {
         "nixpkgs": [
@@ -75,6 +92,7 @@
     },
     "root": {
       "inputs": {
+        "brcm-firmware": "brcm-firmware",
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",

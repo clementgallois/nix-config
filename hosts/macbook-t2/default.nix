@@ -4,11 +4,11 @@
 { pkgs, inputs, ... }:
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
-    inputs.nixos-hardware.nixosModules.common-pc-ssd
+    inputs.nixos-hardware.nixosModules.apple-t2
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+
+    ./substituter.nix
 
     ../common
     ../common/users/clement
@@ -25,19 +25,25 @@
     "flakes"
   ];
 
+  hardware.firmware = [
+    (pkgs.stdenvNoCC.mkDerivation {
+      name = "brcm-firmware-t2";
+
+      src = inputs.brcm-firmware;
+
+      installPhase = ''
+        mkdir -p $out/lib/firmware
+        # copy firmwares 
+        cp -r lib/firmware/* $out/lib/firmware/
+      '';
+    })
+  ];
+
   boot = {
     loader = {
       systemd-boot = {
-
         # Bootloader.
         enable = true;
-
-        extraEntries = {
-          "nobara.conf" = ''
-            title Nobara
-            efi /EFI/fedora/shimx64.efi
-          '';
-        };
       };
       efi = {
         canTouchEfiVariables = true;
@@ -46,7 +52,7 @@
     };
   };
 
-  networking.hostName = "desktop"; # Define your hostname.
+  networking.hostName = "macbook"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
