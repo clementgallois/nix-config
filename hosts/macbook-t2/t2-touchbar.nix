@@ -141,12 +141,13 @@
           Icon = "volume_up";
           Action = "VolumeUp";
         }
-        {
-          Time = "24hr";
-          Locale = "fr_FR";
-          Action = "Time";
-          Stretch = 2;
-        }
+        # wasn't looking at it anyway
+        # {
+        #   Time = "24hr";
+        #   Locale = "fr_FR";
+        #   Action = "Time";
+        #   Stretch = 2;
+        # }
       ];
     };
   };
