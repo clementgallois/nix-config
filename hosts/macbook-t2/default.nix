@@ -5,6 +5,7 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.apple-t2
+    inputs.t2fanrd.nixosModules.t2fanrd
     ./t2-fan.nix
     ./t2-suspend-fix.nix
     ./t2-network-notification-fix.nix
