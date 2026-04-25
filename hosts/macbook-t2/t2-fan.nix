@@ -11,8 +11,8 @@
         # max_speed = 6336;
 
         low_temp = 55; # default
-        high_temp = 75; # default
-        speed_curve = "logarithmic";
+        high_temp = 80;
+        speed_curve = "exponential";
         always_full_speed = false; # default
       };
 
@@ -21,8 +21,8 @@
         # max_speed = 6864;
 
         low_temp = 55; # default
-        high_temp = 75; # default
-        speed_curve = "logarithmic";
+        high_temp = 80;
+        speed_curve = "exponential";
         always_full_speed = false; # default
       };
     };
