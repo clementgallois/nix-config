@@ -30,11 +30,16 @@
       name = "brcm-firmware-t2";
 
       src = inputs.brcm-firmware;
+      # Tell Nix to ignore dangling symlinks pointing to the missing cypress folder
+      dontCheckForBrokenSymlinks = true;
 
       installPhase = ''
         mkdir -p $out/lib/firmware
         # copy firmwares 
         cp -r lib/firmware/* $out/lib/firmware/
+
+        # Find and delete all broken symlinks so the zstd compression step does not crash
+        find $out/lib/firmware -xtype l -delete
       '';
     })
   ];
