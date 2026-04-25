@@ -62,7 +62,7 @@
             outputs = self;
           };
         };
-        "macbook" = nixpkgs.lib.nixosSystem {
+        "macbook-t2" = nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/macbook-t2 ];
           specialArgs = {
             inherit inputs;
