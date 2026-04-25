@@ -5,6 +5,10 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.apple-t2
+    ./t2-fan.nix
+    ./t2-suspend-fix.nix
+    ./t2-network-notification-fix.nix
+    ./t2-touchbar.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 

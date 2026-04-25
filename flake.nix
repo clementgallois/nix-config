@@ -21,6 +21,7 @@
       url = "git+ssh://git@github.com/clementgallois/brcm-firmware.git?ref=main";
       flake = false;
     };
+    t2fanrd.url = "github:GnomedDev/T2FanRD";
     # secrets for nix
     sops-nix = {
       url = "github:mic92/sops-nix";
@@ -31,12 +32,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # not using this yet
-    # nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     # Firefox Addons, packaged with nix
     firefox-addons = {
