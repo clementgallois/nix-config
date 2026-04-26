@@ -18,7 +18,7 @@
     ../common
     ../common/users/clement
 
-    ../common/optional/podman.nix
+    ../common/optional/virtualization.nix
 
     # wifi network conf
     ../common/optional/network
