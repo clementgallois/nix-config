@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
+  boot.kernelParams = [ "mem_sleep_default=s2idle" ];
   # suspend fix
+  # network seem ok with this fix
+  #
+  # touchbar is wonky, disabling t2-touchbar.nix (tiny-dfr)
+  # allow to use the native touchbar after suspend
   systemd.services.t2suspendfix = {
     enable = true;
     description = "modules to be unloaded and reloaded for suspend";
@@ -15,10 +20,16 @@
       ExecStart = [
         "-${pkgs.kmod}/bin/modprobe -r brcmfmac_wcc"
         "-${pkgs.kmod}/bin/modprobe -r brcmfmac"
+
+        # touchbar stay awake if we donc unload
+        "-${pkgs.kmod}/bin/modprobe -r hid-appletb-kbd"
+
         "-${pkgs.kmod}/bin/rmmod -f apple-bce"
       ];
       ExecStop = [
         "-${pkgs.kmod}/bin/modprobe apple-bce"
+        # already reloadeded automacally
+        # "-${pkgs.kmod}/bin/modprobe hid-appletb-kbd"
         "-${pkgs.kmod}/bin/modprobe brcmfmac"
         "-${pkgs.kmod}/bin/modprobe brcmfmac_wcc"
       ];

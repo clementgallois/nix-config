@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   hardware.apple.touchBar = {
-    enable = true;
+    enable = false;
     package = pkgs.tiny-dfr;
     # https://github.com/WhatAmISupposedToPutHere/tiny-dfr/blob/master/share/tiny-dfr/config.toml
     settings = {
