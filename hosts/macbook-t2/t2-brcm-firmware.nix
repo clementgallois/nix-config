@@ -4,7 +4,7 @@ let
     owner = "clementgallois";
     repo = "brcm-firmware";
     rev = "e9175f6b33f960d93d422eb55f82b484387eea79";
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    hash = "sha256-1h8o9f5ez0gouOY1A5VHOe9XkfGoJrN9761/m/EVXnk=";
   };
   # brcmFirmwareSrc = builtins.fetchGit {
   #   url = "https://github.com/clementgallois/brcm-firmware.git";
