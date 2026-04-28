@@ -8,6 +8,11 @@ creation_rules:
     - age:
       - *desktop
       - *macbook-t2
+  - path_regex: hosts/common/optional/nix-config-brcm-token.*secrets\.ya?ml$
+    key_groups:
+    - age:
+      - *desktop
+      - *macbook-t2
   - path_regex: hosts/common/optional/network/.*secrets\.ya?ml$
     key_groups:
     - age:

@@ -10,6 +10,7 @@
     ./t2-suspend-fix.nix
     ./t2-network-notification-fix.nix
     ./t2-touchbar.nix
+    ./t2-brcm-firmware.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
@@ -19,7 +20,7 @@
     ../common/users/clement
 
     ../common/optional/virtualization.nix
-
+    ../common/optional/nix-config-brcm-token.nix
     # wifi network conf
     ../common/optional/network
   ];
@@ -30,24 +31,24 @@
     "flakes"
   ];
 
-  hardware.firmware = [
-    (pkgs.stdenvNoCC.mkDerivation {
-      name = "brcm-firmware-t2";
-
-      src = inputs.brcm-firmware;
-      # Tell Nix to ignore dangling symlinks pointing to the missing cypress folder
-      dontCheckForBrokenSymlinks = true;
-
-      installPhase = ''
-        mkdir -p $out/lib/firmware
-        # copy firmwares 
-        cp -r lib/firmware/* $out/lib/firmware/
-
-        # Find and delete all broken symlinks so the zstd compression step does not crash
-        find $out/lib/firmware -xtype l -delete
-      '';
-    })
-  ];
+  # hardware.firmware = [
+  # (pkgs.stdenvNoCC.mkDerivation {
+  #   name = "brcm-firmware-t2";
+  #
+  #   src = inputs.brcm-firmware;
+  #   # Tell Nix to ignore dangling symlinks pointing to the missing cypress folder
+  #   dontCheckForBrokenSymlinks = true;
+  #
+  #   installPhase = ''
+  #     mkdir -p $out/lib/firmware
+  #     # copy firmwares
+  #     cp -r lib/firmware/* $out/lib/firmware/
+  #
+  #     # Find and delete all broken symlinks so the zstd compression step does not crash
+  #     find $out/lib/firmware -xtype l -delete
+  #   '';
+  # })
+  # ];
 
   boot = {
     loader = {

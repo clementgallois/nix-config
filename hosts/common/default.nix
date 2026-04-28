@@ -27,7 +27,14 @@
       inherit inputs outputs;
     };
   };
-
+  environment.systemPackages = with pkgs; [
+    proton-pass
+    proton-pass-cli
+  ];
+  # programs.firefox = {
+  #   enable = true;
+  #   nativeMessagingHosts.packages = [ pkgs.proton-pass ];
+  # };
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
