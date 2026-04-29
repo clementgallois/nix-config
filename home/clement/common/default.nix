@@ -42,13 +42,9 @@
 
     sessionPath = [ "$HOME/.local/bin" ];
 
-    # defined in nh.nix
-    # sessionVariables = {
-    #   NH_FLAKE = "$HOME/NixConfig";
-    # };
-
     packages = with pkgs; [
-      cowsay
+      vlc
+      rclone
     ];
     # persistence = {
     #   "/persist".directories = [
