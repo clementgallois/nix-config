@@ -1,5 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
+  services.keyd.enable = lib.mkForce false;
   hardware.apple.touchBar = {
     enable = false;
     package = pkgs.tiny-dfr;

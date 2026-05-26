@@ -42,10 +42,13 @@
 
   # Enable Gamescope (optional but highly recommended for Wayland users)
   # Acts as a micro-compositor to fix resolution and scaling issues in games
+  # resolution 16:10: 1440x900 - 1680x1050 - 1280x800
+  # gamescope -W 2560 -H 1440 -w 1280 -h 800 -f -r 60 -- %command%
   programs.gamescope.enable = true;
 
   # tool to manage Steam, Heroic, Lutris and other gaming components
-  # environment.systemPackages = with pkgs; [
-  #   mangohud
-  # ];
+  environment.systemPackages = with pkgs; [
+    mangohud
+    heroic
+  ];
 }

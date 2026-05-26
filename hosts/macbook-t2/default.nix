@@ -23,7 +23,7 @@
 
     # gAmInG
     ../common/steam.nix
-    ../common/optional/prism.nix
+    # ../common/optional/prism.nix
 
     # wifi network conf
     ../common/optional/network
@@ -67,9 +67,17 @@
     };
   };
 
+  # Download ram (use zram to make a compressed swap in ram when needed)
+  zramSwap = {
+    enable = true;
+    priority = 100;
+    algorithm = "lz4";
+    memoryPercent = 50;
+  };
+
   networking.hostName = "macbook-t2"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
+  networking.firewall.checkReversePath = false;
   # Enable networking
   # networking.networkmanager.enable = true;
 

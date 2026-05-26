@@ -45,6 +45,8 @@
     packages = with pkgs; [
       vlc
       rclone
+      prismlauncher
+      proton-vpn
     ];
     # persistence = {
     #   "/persist".directories = [
