@@ -20,6 +20,8 @@ in
       "networkmanager"
       "podman"
       "wheel"
+      "scanner"
+      "lp"
     ];
 
     #openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile ../../../../home/gabriel/ssh.pub);

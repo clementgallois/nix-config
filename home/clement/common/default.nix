@@ -30,6 +30,7 @@
   programs = {
     home-manager.enable = true;
     git.enable = true;
+    element-desktop.enable = true;
   };
 
   # enable xdg directory handling (~/.config)
@@ -48,6 +49,7 @@
       prismlauncher
       proton-vpn
     ];
+
     # persistence = {
     #   "/persist".directories = [
     #     "Documents"
