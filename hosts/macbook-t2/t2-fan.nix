@@ -12,7 +12,7 @@
 
         low_temp = 55; # default
         high_temp = 80;
-        speed_curve = "logarithmic";
+        speed_curve = "linear";
         always_full_speed = false; # default
       };
 
@@ -22,7 +22,7 @@
 
         low_temp = 55; # default
         high_temp = 80;
-        speed_curve = "logarithmic";
+        speed_curve = "linear";
         always_full_speed = false; # default
       };
     };

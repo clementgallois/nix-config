@@ -14,14 +14,19 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     # compilation of hardware conf
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
-
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # private repo containing firmwares needed for macbook t2
     brcm-firmware = {
       url = "git+ssh://git@github.com/clementgallois/brcm-firmware.git?ref=main";
       flake = false;
     };
-    t2fanrd.url = "github:GnomedDev/T2FanRD";
+    t2fanrd = {
+      url = "github:GnomedDev/T2FanRD";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # secrets for nix
     sops-nix = {
       url = "github:mic92/sops-nix";
