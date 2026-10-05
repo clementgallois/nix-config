@@ -12,27 +12,27 @@
   };
 
   # Useful packages for container management
-  # environment.systemPackages = with pkgs; [
-  #   podman-compose
-  #   podman-tui
-  # ];
+  environment.systemPackages = with pkgs; [
+    podman-compose
+    podman-tui
+  ];
 
   # use kata micro vm for containers
   # can fallback to a standard, lightweight container using the default OCI runtime
   # with: podman run --runtime=crun [...]
-  environment.systemPackages = with pkgs; [
-    kata-runtime
-  ];
+  #environment.systemPackages = with pkgs; [
+  #  kata-runtime
+  #];
 
-  virtualisation.containers.containersConf.settings = {
-    engine = {
-      # Set Kata as the default runtime for all containers
-      runtime = "kata";
-      runtimes = {
-        kata = [
-          "${pkgs.kata-runtime}/bin/kata-runtime"
-        ];
-      };
-    };
-  };
+  #   virtualisation.containers.containersConf.settings = {
+  #     engine = {
+  #       # Set Kata as the default runtime for all containers
+  #       runtime = "kata";
+  #       runtimes = {
+  #         kata = [
+  #           "${pkgs.kata-runtime}/bin/kata-runtime"
+  #         ];
+  #       };
+  #     };
+  #   };
 }
