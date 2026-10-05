@@ -10,6 +10,7 @@
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles.clement = {
+      isDefault = true;
       search = {
         force = true;
         default = "ddg";
