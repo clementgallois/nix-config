@@ -22,6 +22,8 @@ in
       "wheel"
       "scanner"
       "lp"
+      "video"
+      "dialout"
     ];
 
     #openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile ../../../../home/gabriel/ssh.pub);
